@@ -1,6 +1,7 @@
 # Build xrdp pulseaudio modules in builder container
 # See https://github.com/neutrinolabs/pulseaudio-module-xrdp/wiki/README
-ARG TAG=latest
+ARG TAG=20.04
+
 FROM ubuntu:$TAG as builder
 
 RUN sed -i -E 's/^# deb-src /deb-src /g' /etc/apt/sources.list \
@@ -15,15 +16,15 @@ RUN sed -i -E 's/^# deb-src /deb-src /g' /etc/apt/sources.list \
     && apt-get source pulseaudio \
     && rm -rf /var/lib/apt/lists/*
 
-RUN cd /pulseaudio-$(pulseaudio --version | awk '{print $2}') \
-    && ./configure
+#RUN cd /pulseaudio-$(pulseaudio --version | awk '{print $2}') \
+#    && ./configure
 
-RUN git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git /pulseaudio-module-xrdp \
-    && cd /pulseaudio-module-xrdp \
-    && ./bootstrap \
-    && ./configure PULSE_DIR=/pulseaudio-$(pulseaudio --version | awk '{print $2}') \
-    && make \
-    && make install
+#RUN git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git /pulseaudio-module-xrdp \
+#    && cd /pulseaudio-module-xrdp \
+#    && ./bootstrap \
+#    && ./configure PULSE_DIR=/pulseaudio-$(pulseaudio --version | awk '{print $2}') \
+#    && make \
+#    && make install
 
 
 # Build the final image
@@ -35,6 +36,7 @@ RUN apt-get update \
         firefox \
         git \
         locales \
+        openssh-server \
         pavucontrol \
         pulseaudio \
         pulseaudio-utils \
@@ -43,6 +45,7 @@ RUN apt-get update \
         xfce4 \
         xfce4-goodies \
         xfce4-pulseaudio-plugin \
+	x2goserver \
         xorgxrdp \
         xrdp \
         xubuntu-icon-theme \
