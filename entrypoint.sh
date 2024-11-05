@@ -8,6 +8,10 @@ usermod -aG sudo ubuntu
 # Start xrdp sesman service
 /usr/sbin/xrdp-sesman
 
+# Start sshd
+mkdir /var/run/sshd
+/usr/sbin/sshd
+
 # Run xrdp in foreground if no commands specified
 if [ -z "$1" ]; then
     /usr/sbin/xrdp --nodaemon
