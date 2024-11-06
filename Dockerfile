@@ -54,7 +54,7 @@ RUN apt-get update \
 # Developer tools
 RUN apt-get update \
     && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
-        git wget curl \
+        git wget curl unzip \
     && rm -rf /var/lib/apt/lists/*
 
 
