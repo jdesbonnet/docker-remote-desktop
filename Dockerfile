@@ -54,7 +54,7 @@ RUN apt-get update \
 # Developer tools
 RUN apt-get update \
     && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
-        git wget curl unzip xz-utils \
+        git wget curl zip unzip xz-utils libglu1-mesa \
 	openjdk-17-jdk \
     && rm -rf /var/lib/apt/lists/*
 
