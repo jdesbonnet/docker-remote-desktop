@@ -54,7 +54,7 @@ RUN apt-get update \
 # Developer tools
 RUN apt-get update \
     && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
-        git wget curl zip unzip xz-utils libglu1-mesa clang cmake ninja-build \
+        git wget curl zip unzip xz-utils libglu1-mesa clang cmake ninja-build pkg-config \
 	openjdk-17-jdk \
     && rm -rf /var/lib/apt/lists/*
 
