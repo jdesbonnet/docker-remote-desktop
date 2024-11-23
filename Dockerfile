@@ -62,8 +62,9 @@ RUN apt-get update \
 # Data science tools
 RUN apt-get update \
     && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
-        python3 python3-pip qgis gnuplot \
+        python3 python3-pip python3-geopandas qgis gnuplot \
     && rm -rf /var/lib/apt/lists/*
+RUN pip3 install numpy geopandas
 
 RUN sed -i -E 's/^; autospawn =.*/autospawn = yes/' /etc/pulse/client.conf \
     && [ -f /etc/pulse/client.conf.d/00-disable-autospawn.conf ] && sed -i -E 's/^(autospawn=.*)/# \1/' /etc/pulse/client.conf.d/00-disable-autospawn.conf || : \
