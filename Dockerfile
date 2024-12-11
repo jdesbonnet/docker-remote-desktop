@@ -57,6 +57,7 @@ RUN apt-get update \
         git wget curl zip unzip xz-utils libglu1-mesa clang cmake ninja-build pkg-config \
 	openjdk-17-jdk maven \
         npm \
+	software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
 # Data science tools
